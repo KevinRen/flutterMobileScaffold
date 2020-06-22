@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'utils/http.dart';
 import 'comm.dart';
-import 'appRouter.dart';
 
 enum Env {
   dev,
@@ -10,15 +9,15 @@ enum Env {
   product
 }
 
-class RootConfig {
+class AppConfig {
   final String baseUrl;
   final Interceptor interceptor;
   final ContentType contentType;
-  final Map<dynamic, RouteBuild> routers;
+  final Map<String, WidgetBuilder> routers;
 
-  RootConfig({
-    @required this.routers,
-    @required this.baseUrl,
+  AppConfig({
+    this.routers,
+    this.baseUrl: 'http://localhost:8080',
     this.interceptor,
     this.contentType,
   });
@@ -27,10 +26,14 @@ class RootConfig {
 class AppEnv {
   static Env env = Env.dev;
 
-  static void setAppConfig(RootConfig config) {
+  static void setAppConfig({AppConfig config}) {
     HttpRequest.baseUrl = config.baseUrl;
-    AppRouter.routers = config.routers;
+    if (config.routers != null) AppRouter.routers = config.routers;
     if (config.interceptor != null) HttpRequest.interceptor = config.interceptor;
     if (config.contentType != null) HttpRequest.contentType = config.contentType;
   }
+}
+
+class AppRouter {
+  static Map<String, WidgetBuilder> routers;
 }
