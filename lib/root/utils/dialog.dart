@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../comm.dart';
+import '../define.dart';
 
 class AppDialog {
   static bool _isShowDialog = false;

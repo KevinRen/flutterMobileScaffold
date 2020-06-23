@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'utils/appStyle.dart';
+import 'config/appStyle.dart';
 import 'utils/http.dart';
 import 'utils/socket.dart';
 import 'appEnv.dart';
-import 'comm.dart';
+import 'define.dart';
 import 'utils/size.dart';
 import 'package:oktoast/oktoast.dart';
 import 'utils/dialog.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'utils/http.dart';
-import 'comm.dart';
+import 'define.dart';
 
 enum Env {
   dev,

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:convert';
-import '../comm.dart';
+import '../define.dart';
 
 typedef Interceptor(BuildContext context, Map data, DataType dataType);
 
