@@ -26,7 +26,7 @@ class AppConfig {
 class AppEnv {
   static Env env = Env.dev;
 
-  static void setAppConfig({AppConfig config}) {
+  static void setAppConfig(AppConfig config) {
     HttpRequest.baseUrl = config.baseUrl;
     if (config.routers != null) AppRouter.routers = config.routers;
     if (config.interceptor != null) HttpRequest.interceptor = config.interceptor;

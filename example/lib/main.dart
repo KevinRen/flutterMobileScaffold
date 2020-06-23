@@ -4,11 +4,9 @@ import './config/routers.dart';
 import './app.dart';
 
 void main() {
-  runApp(App());
   AppEnv.env = Env.dev;
-  AppEnv.setAppConfig(
-    config: AppConfig(
+  AppEnv.setAppConfig(AppConfig(
       routers: pageRouters
-    ),
-  );
+  ));
+  runApp(App());
 }
