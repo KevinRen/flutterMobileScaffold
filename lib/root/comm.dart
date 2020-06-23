@@ -20,3 +20,25 @@ class RequestBuilder {
     this.headerSetting,
   });
 }
+
+class DialogParams {
+  final BuildContext context;
+  final String content;
+  final String title;
+  final String cancelTxt;
+  final Function cancelEvent;
+  final String okTxt;
+  final Function okEvent;
+  final Color mainColor;
+
+  DialogParams({
+    @required this.context,
+    @required this.content,
+    @required this.title,
+    this.cancelTxt,
+    this.cancelEvent,
+    this.okTxt,
+    this.okEvent,
+    this.mainColor,
+  });
+}

@@ -1,8 +1,8 @@
 name: app_scaffold
 description: Flutter app scaffold package
 version: 0.0.1
-author:
-homepage:
+author: KevinRen
+homepage: https://github.com/KevinRen/app-sacffold
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   dio: 3.0.9
+  oktoast: 2.3.2
   web_socket_channel: 1.1.0
 
 dev_dependencies:

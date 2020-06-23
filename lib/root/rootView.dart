@@ -6,6 +6,8 @@ import 'utils/socket.dart';
 import 'appEnv.dart';
 import 'comm.dart';
 import 'utils/size.dart';
+import 'package:oktoast/oktoast.dart';
+import 'utils/dialog.dart';
 
 enum RootType { root, page, component }
 
@@ -28,11 +30,13 @@ class RootView {
   }) {
     switch(type) {
       case RootType.root:
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: themeData ?? appThemeData,
-          home: _scaffoldBuild(body, backgroundColor, appBar),
-          routes: AppRouter.routers,
+        return OKToast(
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: themeData ?? appThemeData,
+            home: _scaffoldBuild(body, backgroundColor, appBar),
+            routes: AppRouter.routers,
+          ),
         );
       case RootType.page:
         return _scaffoldBuild(body, backgroundColor, appBar);
@@ -47,6 +51,10 @@ class RootView {
   );
   
   void sizeInit() => AppSize.init(width: 750, height: 1334, allowFontScaling: false);
+
+  void toast(String message, { int duration: 1000 }) => showToast(message, duration: Duration(milliseconds: duration));
+
+  void dialog(DialogParams dialogParams) => AppDialog.show(dialogParams);
 
   double size(double size) => AppSize().size(size);
 
