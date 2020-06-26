@@ -23,10 +23,11 @@ class RootView {
     Color backgroundColor: Colors.white,
     ThemeData themeData,
     AppBar appBar,
+    BottomNavigationBar bottomNavigationBar,
   }) => _buildBody(type, body, backgroundColor, themeData, appBar: appBar);
 
   Widget _buildBody(RootType type, Widget body, Color backgroundColor, ThemeData themeData, {
-    AppBar appBar,
+    AppBar appBar, BottomNavigationBar bottomNavigationBar
   }) {
     switch(type) {
       case RootType.root:
@@ -34,20 +35,27 @@ class RootView {
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: themeData ?? appThemeData,
-            home: _scaffoldBuild(body, backgroundColor, appBar),
+            home: _scaffoldBuild(
+                body, backgroundColor, appBar, bottomNavigationBar),
             routes: AppRouter.routers,
           ),
         );
       case RootType.page:
-        return _scaffoldBuild(body, backgroundColor, appBar);
+        return _scaffoldBuild(
+            body, backgroundColor, appBar, bottomNavigationBar);
       default: return body;
     }
   }
 
-  Scaffold _scaffoldBuild(Widget body, Color backgroundColor, AppBar appBar) => Scaffold(
+  Scaffold _scaffoldBuild(Widget body, Color backgroundColor, AppBar appBar,
+      BottomNavigationBar bottomNavigationBar) =>
+      Scaffold(
     backgroundColor: backgroundColor,
     appBar: appBar,
     body: body,
+        bottomNavigationBar: bottomNavigationBar != null
+            ? bottomNavigationBar
+            : null,
   );
   
   void sizeInit() => AppSize.init(width: 750, height: 1334, allowFontScaling: false);
