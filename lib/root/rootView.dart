@@ -18,13 +18,15 @@ class RootView {
   RootView(this.context);
 
   Widget build({
-    @required Widget body,
     @required RootType type,
+    @required Widget body,
     Color backgroundColor: Colors.white,
     ThemeData themeData,
     AppBar appBar,
     BottomNavigationBar bottomNavigationBar,
-  }) => _buildBody(type, body, backgroundColor, themeData, appBar: appBar);
+  }) =>
+      _buildBody(type, body, backgroundColor, themeData, appBar: appBar,
+          bottomNavigationBar: bottomNavigationBar);
 
   Widget _buildBody(RootType type, Widget body, Color backgroundColor, ThemeData themeData, {
     AppBar appBar, BottomNavigationBar bottomNavigationBar
