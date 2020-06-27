@@ -52,13 +52,13 @@ class RootView {
   Scaffold _scaffoldBuild(Widget body, Color backgroundColor, AppBar appBar,
       BottomNavigationBar bottomNavigationBar) =>
       Scaffold(
-    backgroundColor: backgroundColor,
-    appBar: appBar,
-    body: body,
+        backgroundColor: backgroundColor,
+        appBar: appBar,
+        body: body,
         bottomNavigationBar: bottomNavigationBar != null
             ? bottomNavigationBar
             : null,
-  );
+      );
   
   void sizeInit() => AppSize.init(width: 750, height: 1334, allowFontScaling: false);
 
@@ -67,6 +67,8 @@ class RootView {
   void dialog(DialogParams dialogParams) => AppDialog.show(dialogParams);
 
   double size(double size) => AppSize().size(size);
+
+  double screenWidth() => AppSize().screenWidthForRoot();
 
   void gotoPage(String path, { Map params }) => Navigator.of(context).pushNamed(path, arguments: params);
 
