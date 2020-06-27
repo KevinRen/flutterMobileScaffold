@@ -97,8 +97,6 @@ class AppSize {
   num size(num size) => size * scaleWidth;
   num setWidth(num width) => width * scaleWidth;
 
-  num screenWidthForRoot() => screenWidthPx;
-
   /// 根据UI设计的设备高度适配
   /// 当发现UI设计中的一屏显示的与当前样式效果不符合时,
   /// 或者形状有差异时,建议使用此方法实现高度适配.

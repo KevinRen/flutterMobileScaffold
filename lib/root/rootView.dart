@@ -68,8 +68,6 @@ class RootView {
 
   double size(double size) => AppSize().size(size);
 
-  double screenWidth() => AppSize().screenWidthForRoot();
-
   void gotoPage(String path, { Map params }) => Navigator.of(context).pushNamed(path, arguments: params);
 
   Map pageParams() => ModalRoute.of(context).settings.arguments;
