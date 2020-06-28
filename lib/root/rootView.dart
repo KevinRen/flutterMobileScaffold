@@ -55,7 +55,7 @@ class RootView {
         backgroundColor: backgroundColor,
         appBar: appBar,
         body: body,
-        resizeToAvoidBottomPadding: true,
+        resizeToAvoidBottomPadding: false,
         bottomNavigationBar: bottomNavigationBar != null
             ? bottomNavigationBar
             : null,
