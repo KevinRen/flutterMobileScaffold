@@ -9,16 +9,13 @@ import 'utils/size.dart';
 import 'package:oktoast/oktoast.dart';
 import 'utils/dialog.dart';
 
-enum RootType { root, page, component }
+enum PageType { Root, Page, Component }
 
 class RootView {
-  final BuildContext context;
   final SocketUtil socketUtil = SocketUtil();
 
-  RootView(this.context);
-
   Widget build({
-    @required RootType type,
+    @required PageType type,
     @required Widget body,
     Color backgroundColor: Colors.white,
     ThemeData themeData,
@@ -28,11 +25,13 @@ class RootView {
       _buildBody(type, body, backgroundColor, themeData, appBar: appBar,
           bottomNavigationBar: bottomNavigationBar);
 
-  Widget _buildBody(RootType type, Widget body, Color backgroundColor, ThemeData themeData, {
+  Widget _buildBody(PageType type, Widget body, Color backgroundColor,
+      ThemeData themeData, {
     AppBar appBar, BottomNavigationBar bottomNavigationBar
   }) {
     switch(type) {
-      case RootType.root:
+      case PageType.Root:
+        AppSize.init(width: 750, height: 1334, allowFontScaling: false);
         return OKToast(
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -42,7 +41,7 @@ class RootView {
             routes: AppRouter.routers,
           ),
         );
-      case RootType.page:
+      case PageType.Page:
         return _scaffoldBuild(
             body, backgroundColor, appBar, bottomNavigationBar);
       default: return body;
@@ -59,8 +58,6 @@ class RootView {
             ? bottomNavigationBar
             : null,
       );
-  
-  void sizeInit() => AppSize.init(width: 750, height: 1334, allowFontScaling: false);
 
   void toast(String message, { int duration: 1000 }) => showToast(message, duration: Duration(milliseconds: duration));
 
@@ -70,14 +67,19 @@ class RootView {
 
   double fontSize(double size) => AppSize().setSp(size);
 
-  void gotoPage(String path, { Map params }) => Navigator.of(context).pushNamed(path, arguments: params);
+  void gotoPage(BuildContext context, {String path, Map params }) =>
+      Navigator.of(context).pushNamed(path, arguments: params);
 
-  Map pageParams() => ModalRoute.of(context).settings.arguments;
+  Map pageParams(BuildContext context) =>
+      ModalRoute
+          .of(context)
+          .settings
+          .arguments;
 
   Future request(RequestBuilder requestBuilder) async => await HttpRequest.request(requestBuilder);
 
-  SocketUtil socketConnect(String url, String params) {
-    socketUtil.open(url, params);
+  SocketUtil socketConnect(String url) {
+    socketUtil.open(url);
     return socketUtil;
   }
 
